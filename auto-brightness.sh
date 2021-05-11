@@ -60,12 +60,18 @@ then
     exit
 fi
 
-if [[ $CURRHOUR -ge $STARTHOUR || $CURRHOUR -le $ENDHOUR-1 ]]; then
+if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -le $ENDHOUR-1 ]]; then
     if [ $V -eq 1 ]; then
         echo "Night time, setting brightness to $DIM."
     fi
     echo $DIM > $DIR
-    SLEEPTIME=$(( (60*($ENDHOUR- $CURRHOUR - 1) ) + (60-$CURRMIN) ))
+
+    if [ 10#$CURRHOUR > $STARTHOUR ]; then
+        SLEEPTIME=$(( (60*(24-$CURRHOUR+$ENDHOUR-1) )+ (60-10#$CURRMIN) ))
+    else
+        SLEEPTIME=$(( (60*($ENDHOUR-$CURRHOUR-1) ) + (60-10#$CURRMIN) ))
+    fi
+
     if [ $V -eq 1 ]; then
         echo "Sleep $SLEEPTIME minutes"
     fi
@@ -75,7 +81,7 @@ else
         echo "Day time, set brightness to $BRIGHT"
     fi
     echo $BRIGHT > $DIR
-    SLEEPTIME=$(( (60*($STARTHOUR - $CURRHOUR - 1) ) + (60-$CURRMIN) ))
+    SLEEPTIME=$(( (60*($STARTHOUR - 10#$CURRHOUR - 1) ) + (60-10#$CURRMIN) ))
     if [ $V -eq 1 ]; then
         echo "Sleep $SLEEPTIME minutes"
     fi
