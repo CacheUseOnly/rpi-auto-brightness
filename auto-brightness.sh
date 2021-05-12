@@ -43,7 +43,6 @@ case $key in
     -v|--verbose)
     V=1
     shift
-    shift
     ;;
     -h|--help)
     echo "Usage: ./auto-brightness.sh [-v verbose output] [-s starthour] [-e endhout] "
