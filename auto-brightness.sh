@@ -60,6 +60,8 @@ then
     exit
 fi
 
+while :
+do
 if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -le $ENDHOUR-1 ]]; then
     if [ $V -eq 1 ]; then
         echo "Night time, setting brightness to $DIM."
@@ -88,3 +90,4 @@ else
 
     sleep $SLEEPTIME'm' 
 fi
+done
