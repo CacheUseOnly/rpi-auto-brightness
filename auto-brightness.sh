@@ -63,7 +63,7 @@ while :
 do
 
 CURRHOUR=`date +"%H"`
-CURRMIN=`date +"%M"
+CURRMIN=`date +"%M"`
 
 if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -lt $ENDHOUR ]]; then
     if [ $V -eq 1 ]; then
