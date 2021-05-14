@@ -61,7 +61,11 @@ fi
 
 while :
 do
-if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -le $ENDHOUR-1 ]]; then
+
+CURRHOUR=`date +"%H"`
+CURRMIN=`date +"%M"
+
+if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -lt $ENDHOUR ]]; then
     if [ $V -eq 1 ]; then
         echo "Night time, setting brightness to $DIM."
     fi
@@ -75,6 +79,7 @@ if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -le $ENDHOUR-1 ]]; then
 
     if [ $V -eq 1 ]; then
         echo "Sleep $SLEEPTIME minutes"
+        echo
     fi
     sleep $SLEEPTIME'm'
 else
@@ -85,6 +90,7 @@ else
     SLEEPTIME=$(( (60*($STARTHOUR - 10#$CURRHOUR - 1) ) + (60-10#$CURRMIN) ))
     if [ $V -eq 1 ]; then
         echo "Sleep $SLEEPTIME minutes"
+        echo
     fi
 
     sleep $SLEEPTIME'm' 
