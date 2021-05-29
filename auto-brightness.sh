@@ -75,7 +75,7 @@ if [[ 10#$CURRHOUR -ge $STARTHOUR || 10#$CURRHOUR -lt $ENDHOUR ]]; then
     fi
     echo $DIM > $DIR
 
-    if [ $((10#$CURRHOUR)) -gt $STARTHOUR ]; then
+    if [ $((10#$CURRHOUR)) -ge $STARTHOUR ]; then
         SLEEPTIME=$(( (60*(24-$CURRHOUR+$ENDHOUR-1) )+ (60-10#$CURRMIN) ))
     else
         SLEEPTIME=$(( (60*($ENDHOUR-$CURRHOUR-1) ) + (60-10#$CURRMIN) ))
